@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="Images/Logos/favicon.svg">
+    <link rel="stylesheet" href="bs/css/bootstrap.css">
+    <link rel="stylesheet" href="bs/css/mdb.css">
+    <link rel="stylesheet" href="bs/css/style.css">
+
+    <title>Parishka | Jumpp</title>
+
+    <style>
+        /* ------------------------- FONTS ------------------------- */
+        @font-face {
+            font-family: "Anton";
+            src: url("Images/Fonts/Anton-Regular.ttf") format("truetype");
+        }
+        @font-face {
+            font-family: "Patrick Hand";
+            src: url("Images/Fonts/PatrickHand-Regular.ttf") format("truetype");
+        }
+        @font-face {
+            font-family: "Point Blank";
+            src: url("Images/Fonts/PointBlank.ttf") format("truetype");
+        }
+        @font-face {
+            font-family: "Ubuntu Mono_R";
+            src: url("Images/Fonts/UbuntuMono-Regular.ttf") format("truetype");
+        }
+        @font-face {
+            font-family: "Ubuntu Mono_B";
+            src: url("Images/Fonts/UbuntuMono-Bold.ttf") format("truetype");
+        }
+
+        /* ------------------------- GLOBAL ------------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Anton', sans-serif;
+            color: #eeecec;
+            overflow-x: hidden;      /* kill horizontal scroll everywhere */
+            cursor: url("Images/Home_Page/BLUE_DICE_02.png") 16 16, default;
+        }
+
+        .green-image{
+        /* ✅ Cursor on buttons */
+    cursor: url("Images/Home_Page/GREEN_DICE.png") 16 16, pointer !important; 
+    }
+    .blue-image{
+        /* ✅ Cursor on buttons */
+    cursor: url("Images/Home_Page/BLUE_DICE_02.png") 16 16, pointer !important; 
+    }
+
+        /* ------------------------- HERO IMAGE ------------------------- */
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* ------------------------- LEFT STRIP ------------------------- */
+        .left-strip {
+      background: white;
+      border-right: 3px solid #0b4297;
+      overflow: hidden;
+      position: relative;
+     background: white;
+  border-right: 3px solid #0b4297;
+  position: relative;
+    }
+
+  #strip-container {
+   width: 100%;
+}
+
+.strip-block {
+    aspect-ratio: 1 / 1;        /* 👈 keeps it square */
+  width: 100%;
+  background: white;
+  border-bottom: 3px solid #0b4297;
+  box-sizing: border-box;
+  transition: background 0.15s steps(1, end); /* hard cut */
+}
+
+.strip-block.active {
+  background: #0b4297;
+  border-bottom-color: #0b4297;
+}
+
+        /* ------------------------- FLOATING PLAYER ------------------------- */
+        .player-floating {
+            position: fixed;
+            bottom: 50px;
+            width: 100px;
+        }
+        .player-floating img {
+            width: 100%;
+        }
+
+        /* ------------------------- CONTENT ------------------------- */
+        .case-wrapper {
+            display: grid;
+            grid-template-columns: 100px auto;
+            width: 100%;
+        }
+
+        .case-content {
+            width: 100%;
+            padding: 50px 50px !important;
+            background: #0b4297 !important;
+            margin: 0 auto;
+        }
+
+        .case-content img {
+            width: 100%;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* ------------------------- TYPOGRAPHY ------------------------- */
+        h1, h2 {
+            font-family: 'Anton';
+            margin: 25px 0;
+            font-size: 60px !important;
+            line-height: 0.5;
+        }
+        p {
+            font-family: 'Ubuntu Mono_R';
+            font-size: 20px !important;
+
+        }
+
+        .pre_launch{
+            max-width: 1000px;
+        }
+
+        /* ------------------------- SPACING CLASSES ------------------------- */
+        .margin_below { margin-bottom: 45px !important; }
+        .icons_padding { padding: 40px;}
+        .table_icons { height: 70px !important;
+            width: auto !important;}
+        .big_idea { padding: 80px !important; }
+        .naming { padding: 50px; }
+
+
+        .foundation {
+            position: relative;
+            padding: 0 30px; /* safe padding */
+        }
+
+        /* vertical line on all except last */
+        .foundation:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #fff; /* white line */
+        }
+
+        .text_icons img{
+            padding: 60px !important;
+        }
+
+
+
+
+        /* ------------------------- NEXT SECTION ------------------------- */
+        .next-section {
+            background: #0b4297;
+            padding-top: 20px;
+            padding-bottom: 0px;
+            padding-right: 40px;
+            padding-left: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 3px solid #fff;
+        }
+
+        .full-video,
+        .case-content video {
+            width: 100% !important;
+            height: auto !important;
+            display: block !important;   /* <- This stops overflow */
+            max-width: 100% !important;
+        }
+
+        .next-text {
+            font-size: 45px;
+            font-family: 'Anton';
+        }
+        .next-icons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0px !important;
+        }
+        .next-icons img {
+            width: 100px;
+            height: auto;
+        }
+
+        .portfolio-title {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            z-index: 999999;
+
+            font-family: 'Anton', sans-serif;
+            font-size: 40px;
+            color: #ffffff;
+            text-decoration: none;
+            line-height: 1;
+
+            background: #0b4297;           /* 🔴 solid red box */
+            padding: 8px 8px;
+            border-radius: 0px;
+            cursor: url("Images/Home_Page/BLUE_DICE.png") 16 16, pointer !important;
+
+        }
+
+        .portfolio-title:hover {
+      opacity: 0.9;
+      color: #0b4297;
+      background: #ffffff;
+    }
+
+        /* smooth animation */
+        .next-icons img {
+            transition: transform 0.25s ease;
+            cursor: pointer;
+        }
+
+        /* hover grows the icon */
+        .next-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        /* click (active state) grows a bit more */
+        .next-icons img:active {
+            transform: scale(1.3);
+        }
+
+
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .left-strip{
+                background-image: linear-gradient(#0b4297 4px, transparent 4px) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-strip{
+                background-image: linear-gradient(#0b4297 2px, transparent 2px) !important;
+            }
+        }
+
+        /* ------------------ SCROLL REVEAL ------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  will-change: transform, opacity;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slightly slower for big headings (optional but nice) */
+.reveal.slow {
+  transition-duration: 0.8s;
+}
+
+
+    </style>
+
+    <link rel="stylesheet" media="(min-width:769px) and (max-width:1200px)" href="laptop.css">
+
+    <link rel="stylesheet" media="(max-width:768px)" href="mobile.css">
+
+</head>
+<body>
+<div class="portfolio">
+    <a href="Ludo.html" class="portfolio-title">Parishka’s <br> Portfolio</a>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="hero-image">
+    <img src="Images/JUMPP/SLIDE_01.png" width="100%">
+</div>
+
+
+<!-- MAIN WRAPPER -->
+<div class="case-wrapper">
+
+    <!-- WHITE STRIP -->
+    <div class="left-strip">
+  <div id="strip-container"></div>
+
+  <div class="player-floating">
+    <img src="Images/Home_Page/BLUE_03.png" alt="">
+  </div>
+</div>
+
+
+    <!-- RIGHT SIDE CONTENT -->
+    <div class="case-content">
+
+        <div class="margin_below">
+            <p>
+                Jumpp is India’s first AI-powered conversational fintech super app, built to simplify
+                banking, payments, investments and personal money management for everyday Indians.
+            </p>
+        </div>
+
+        <div class="margin_below">
+            <h1 class="slow">ROLE</h1>
+            <p> Social media calendars <br>
+                Post design supervision <br>
+                Copywriting <br>
+                Campaign rollouts
+        </div>
+
+        <div class="margin_below">
+            <h1 class="slow">CHALLENGE</h1>
+            <p>
+                The brand wanted to enter the market with a sharp, modern, relatable identity and needed
+                a pre-launch communication system that could:</p>
+            <div class="row">
+                <div class="col-md-6 text_icons">
+                    <img src="Images/JUMPP/ICON_01.png">
+                </div>
+                <div class="col-md-6 text_icons">
+                    <img src="Images/JUMPP/ICON_02.png">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text_icons">
+                    <img src="Images/JUMPP/ICON_03.png">
+                </div>
+                <div class="col-md-6 text_icons">
+                    <img src="Images/JUMPP/ICON_04.png">
+                </div>
+            </div>
+
+            <p>
+                The audience was rural parts of urban India — financially active, digitally comfortable,
+                but often overwhelmed by financial jargon. Jumpp needed communication that was: simple,
+                fun, whacky, human-first, and insight-driven.
+            </p>
+
+        </div>
+
+
+        <div class="margin_below">
+            <h1 class="slow"><span class="line_gap"> USER PERSONAS &
+                BEHAVIOURAL INSIGHT MAPS</span></h1>
+            <p>
+                Created detailed, data-driven personas to guide content, tone and platform behaviour.
+            </p>
+            <div class="row">
+                <div class="col-md-6 foundation border-right-line">
+                    <img src="Images/JUMPP/ICON_05.png"  class="table_icons">
+                    <p>Demographics <br>
+                        Tech behaviour <br>
+                        Spending habits <br>
+                        Financial pain points <br>
+                        App usage motivations <br>
+                        Barriers to financial
+                        decision-making <br>
+                        How Jumpp fits into
+                        their daily life
+                    </p>
+                </div>
+
+                <div class="col-md-6 foundation border-right-line">
+                    <img src="Images/JUMPP/ICON_06.png"  class="table_icons">
+                    <p>Tone of voice <br>
+                        Visual language <br>
+                        Content hooks <br>
+                        Jai’s conversational style <br>
+                        Pre-launch communication 
+                        priorities
+                    </p>
+                </div>
+            </div>
+            
+            <img src="Images/JUMPP/SLIDE_02.png">
+
+        </div>
+
+        <div class="margin_below pre_launch">
+            <h1 class="slow"><span class="line_gap"> PRE-LAUNCH SOCIAL
+                MEDIA STRATEGY </span></h1>
+            <p>
+                Built a complete pre-launch communication map including: Content themes,
+                Awareness → Education → Curiosity → Value buildup funnels, Entry points for
+                Jai the AI, Human insights backing each content type, Clear hooks for
+                rural-urban audiences (simplicity + high relatability)
+            </p>
+
+        </div>
+
+        <div class="margin_below">
+            <h1 class="slow"><span class="line_gap">  STATISTICS &
+CREATIVE CONCEPTS </span></h1>
+            <p>
+                Designed original post concepts for posts such as: Why smart money habits matter,
+                How Jumpp analyses your spending, How Jai helps you understand your own financial
+                behaviour, Net worth explained simply, “Talk to your money” through voice-led queries,
+                Pain-point led creatives (missed payments, scattered accounts, no budgeting discipline,
+                confusion about stocks)
+            </p>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 row_margin_right">
+                <img src="Images/JUMPP/SLIDE_03A.gif">
+            </div>
+            <div class="col-md-4 row_margin_right">
+                <img src="Images/JUMPP/SLIDE_03B.png">
+            </div>
+            <div class="col-md-4 row_margin_right">
+                <video autoplay loop muted playsinline class="full-video">
+                    <source src="Images/JUMPP/SLIDE_03C.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+
+
+        <!-- NEXT SECTION -->
+        <div class="next-section">
+            <div class="next-text"><h1>NEXT →</h1></div>
+            <div class="next-icons">
+                <a href="BandarGround_M.html">
+                    <img src="Images/Home_Page/BLUE_01.png" class="blue-image" alt="">
+                </a>
+                <a href="Kinfey.html">
+                    <img src="Images/Home_Page/BLUE_02.png" class="blue-image" alt="">
+                </a>
+                <a href="Indian_Express.html">
+                    <img src="Images/Home_Page/GREEN_01.png" class="green-image" alt="">
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+  const revealElements = document.querySelectorAll(
+    ".case-content p, .case-content h1, .case-content img, .foundation"
+  );
+
+  revealElements.forEach(el => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // animate once
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  revealElements.forEach(el => observer.observe(el));
+</script>
+
+
+<script>
+  const container = document.getElementById("strip-container");
+  const content = document.querySelector(".case-content");
+
+  function generateBlocks() {
+    container.innerHTML = "";
+
+    // Create ONE block to measure real size
+    const tempBlock = document.createElement("div");
+    tempBlock.classList.add("strip-block");
+    container.appendChild(tempBlock);
+
+    // Measure actual rendered height (responsive!)
+    const blockHeight = tempBlock.offsetHeight;
+
+    // Remove temp block
+    container.innerHTML = "";
+
+    const contentHeight = content.offsetHeight;
+    const blockCount = Math.ceil(contentHeight / blockHeight);
+
+    for (let i = 0; i < blockCount; i++) {
+      const block = document.createElement("div");
+      block.classList.add("strip-block");
+      container.appendChild(block);
+    }
+  }
+
+  window.addEventListener("load", generateBlocks);
+  window.addEventListener("resize", generateBlocks);
+</script>
+
+
+
+
+<script>
+  const player = document.querySelector(".player-floating");
+  const blocks = () => document.querySelectorAll(".strip-block");
+
+  window.addEventListener("scroll", () => {
+    const playerBottom =
+      player.getBoundingClientRect().bottom;
+
+    blocks().forEach(block => {
+      const rect = block.getBoundingClientRect();
+
+      if (
+        playerBottom >= rect.top &&
+        playerBottom <= rect.bottom
+      ) {
+        block.classList.add("active");
+      } else {
+        block.classList.remove("active");
+      }
+    });
+  });
+</script>
+
+
+<script>
+  const track = document.querySelector('.slider-track');
+  const slides = document.querySelectorAll('.slider-track img');
+  const left = document.querySelector('.left-btn');
+  const right = document.querySelector('.right-btn');
+
+  let index = 0;  // current slide
+
+  function updateSlider() {
+    const width = track.clientWidth;
+    track.style.transform = `translateX(-${index * width}px)`;
+  }
+
+  right.addEventListener('click', () => {
+    if (index < slides.length - 1) {
+      index++;
+      updateSlider();
+    }
+  });
+
+  left.addEventListener('click', () => {
+    if (index > 0) {
+      index--;
+      updateSlider();
+    }
+  });
+
+  // Fix slider on window resize
+  window.addEventListener('resize', updateSlider);
+</script>
+
+<script src="bs/js/jquery.js"></script>
+<script>
+    var $jq = jQuery.noConflict();
+</script>
+<script src="bs/js/popper.js"></script>
+<script src="bs/js/bootstrap.js"></script>
+<script src="bs/js/mdb.js"></script>
+
+
+
+
+</body>
+</html>
+
